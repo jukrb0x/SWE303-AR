@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class CarController : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -27,5 +29,10 @@ public class CarController : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(x, y) * Mathf.Rad2Deg,
                 transform.eulerAngles.z);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        rigidBody.freezeRotation = true;
     }
 }
